@@ -13,7 +13,7 @@ phases:
       - npm install
       - npm fund
       # copying node_modules to all function's code
-      # - zip -r node_modules.zip node_modules
+      - zip -r node_modules.zip node_modules
       - cp node_modules.zip CreateTodo
       - cp node_modules.zip DeleteTodo
       - cp node_modules.zip IndexTodo
