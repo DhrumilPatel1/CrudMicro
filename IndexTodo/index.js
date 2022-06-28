@@ -1,7 +1,6 @@
 const httpResponse = require("./config/HttpResponse");
 module.exports.handler = async (req, res) => {
   try {
-    // await mongoDBClientConnect()
 
     var obj = {
       message: "List Of todo",

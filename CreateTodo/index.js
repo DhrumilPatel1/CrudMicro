@@ -1,8 +1,6 @@
-const { mongoDBClientConnect } = require("./config/db");
 const httpResponse = require("./config/HttpResponse");
 module.exports.handler = async (req, res) => {
   try {
-    // await mongoDBClientConnect()
     var obj = {
       message: "Todo is Created",
     };
