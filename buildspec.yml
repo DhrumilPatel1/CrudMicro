@@ -1,0 +1,76 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: latest
+  pre_build:
+    on-failure: ABORT 
+    commands:
+      - echo source version - $CODEBUILD_RESOLVED_SOURCE_VERSION
+      - echo Installing source NPM dependencies...
+      - ls -la
+      - npm install
+      - npm fund
+      # copying node_modules to all function's code
+      - zip -r node_modules.zip node_modules
+      - cp node_modules.zip CreateTodo
+      - cp node_modules.zip DeleteTodo
+      - cp node_modules.zip IndexTodo
+      - cp node_modules.zip UpdateTodo
+      # removing node_modules and other npm related files from root
+      - rm -rf node_modules package.json package-lock.json node_modules.zip
+      # creating new directory to store zip file of code
+      - mkdir zip_code
+      - echo pre_build completed
+
+  build:
+    on-failure: ABORT 
+    commands:
+      - echo Build started on `date`
+      - ls -la
+      - echo Compiling the Node.js code
+      # need to zip the code
+      - echo zipping the code
+      - cd CreateTodo
+      - unzip node_modules.zip
+      - rm node_modules.zip
+      - zip -r9 CreateTodo.zip .
+      - mv CreateTodo.zip ../zip_code
+      - cd ..
+      - cd DeleteTodo
+      - unzip node_modules.zip
+      - rm node_modules.zip
+      - zip -r9 DeleteTodo.zip .
+      - mv DeleteTodo.zip ../zip_code
+      - cd ..
+      - cd IndexTodo
+      - unzip node_modules.zip
+      - rm node_modules.zip
+      - zip -r9 IndexTodo.zip .
+      - mv IndexTodo.zip ../zip_code
+      - cd ..
+      - cd UpdateTodo
+      - unzip node_modules.zip
+      - rm node_modules.zip
+      - zip -r9 UpdateTodo.zip .
+      - mv UpdateTodo.zip ../zip_code
+      - cd ..
+      - cd zip_code
+      - echo ls -la
+      - echo build completed
+
+  post_build:
+    commands:
+      - echo post build started
+      - echo updating lambda function
+      - aws lambda update-function-code --function-name create_todo --zip-file fileb://CreateTodo.zip
+      - aws lambda update-function-code --function-name delete_todo --zip-file fileb://DeleteTodo.zip
+      - aws lambda update-function-code --function-name todo_list --zip-file fileb://IndexTodo.zip
+      - aws lambda update-function-code --function-name update_todo --zip-file fileb://UpdateTodo.zip
+      - echo updating lambda function completed
+      - echo post build completed
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - "zip_code/*"
