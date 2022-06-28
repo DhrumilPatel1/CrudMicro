@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { MongoClient } = require('mongodb');
 
 module.exports.mongoDBClientConnect = async function mongoDBClientConnect()
 {
