@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 module.exports.mongoDBClientConnect = async function mongoDBClientConnect()
 {
     console.log("CALLED");
-    const uri = 'mongodb+srv://dhrumil:dhrumil%40998@cluster0.blxmx.mongodb.net/test';
+    const uri = process.env.MONGO_URI;
     try 
     {
         mongoose.connect(
