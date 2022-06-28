@@ -1,10 +1,5 @@
-const httpResponse = require("./config/HttpResponse");
 module.exports.handler = async (req, res) => {
-  var obj ={}
   try {
-    obj = {
-      message: "Todo is Created",
-    };
   return {
     statusCode : 200,
     headers :
@@ -13,13 +8,11 @@ module.exports.handler = async (req, res) => {
             "Access-Control-Allow-Methods": "DELETE, GET, OPTIONS, POST, PUT",
             "Access-Control-Allow-Headers": "Content-Type",
         },
-    body : JSON.stringify(obj),
+    body : JSON.stringify({messgae:"ddddd"}),
     isBase64Encoded : false,
 }  ;
   } catch (error) {
-    obj = {
-      message: "Inteaaaaaarnal Server Error",
-    };
+   
    return  {
     statusCode : 500,
     headers :
