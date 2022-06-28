@@ -1,14 +1,35 @@
 const httpResponse = require("./config/HttpResponse");
 module.exports.handler = async (req, res) => {
+  var obj ={}
   try {
-    var obj = {
+    obj = {
       message: "Todo is Created",
     };
-  return  httpResponse(200, obj);
+  return {
+    statusCode : 200,
+    headers :
+        {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "DELETE, GET, OPTIONS, POST, PUT",
+            "Access-Control-Allow-Headers": "Content-Type",
+        },
+    body : JSON.stringify(obj),
+    isBase64Encoded : false,
+}  ;
   } catch (error) {
     obj = {
       message: "Inteaaaaaarnal Server Error",
     };
-   return httpResponse(500, obj);
+   return  {
+    statusCode : 500,
+    headers :
+        {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "DELETE, GET, OPTIONS, POST, PUT",
+            "Access-Control-Allow-Headers": "Content-Type",
+        },
+    body : JSON.stringify(obj),
+    isBase64Encoded : false,
+} ;
   }
 };
