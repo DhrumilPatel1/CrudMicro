@@ -1,4 +1,5 @@
 function HttpResponse(code,value) {
+    console.log("CALLED");
     return  {
         "statusCode": code,
         "headers": {
@@ -8,3 +9,8 @@ function HttpResponse(code,value) {
         "isBase64Encoded": false
     };
 }
+
+module.exports =
+    {
+        HttpResponse
+    };

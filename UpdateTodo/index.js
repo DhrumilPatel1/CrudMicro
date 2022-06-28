@@ -1,6 +1,7 @@
-const HttpResponse = require("./config/HttpResponse");
-module.exports.handler =async function handler() {
-    return HttpResponse(200,"my_value")
+const httpResponse = require("./config/HttpResponse");
+exports.handler = async (event, context) =>
+{
+    return httpResponse.HttpResponse(200,"my_value")
  
   }
 
