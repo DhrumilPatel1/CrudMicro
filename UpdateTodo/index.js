@@ -1,13 +1,7 @@
+const HttpResponse = require("./config/HttpResponse");
 module.exports.handler =async function handler() {
   try {
-    return {
-      "statusCode": 200,
-      "headers": {
-          "my_header": "my_value"
-      },
-      "body": JSON.stringify({"A":"SUCCESSFULLY"}),
-      "isBase64Encoded": false
-  };
+    return HttpResponse(200,"my_value")
   } catch (error) {
     return {
       "statusCode": 500,
