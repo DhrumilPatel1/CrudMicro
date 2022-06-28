@@ -7,7 +7,7 @@ module.exports.handler = async (req, res) => {
     httpResponse(200, obj);
   } catch (error) {
     obj = {
-      message: "Intesrssnal Server Error",
+      message: "Intesaaarssnal Server Error",
     };
     httpResponse(500, obj);
   }
