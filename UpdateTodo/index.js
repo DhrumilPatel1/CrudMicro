@@ -7,8 +7,11 @@ module.exports.handler = async (req, res) => {
     httpResponse(200, obj);
   } catch (error) {
     obj = {
-      message: "Intersnsal Server Error",
+      message: "Internal Server Error",
     };
     httpResponse(500, obj);
   }
 };
+
+
+
