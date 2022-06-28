@@ -4,11 +4,11 @@ module.exports.handler = async (req, res) => {
     var obj = {
       message: "Todo is Created",
     };
-    httpResponse(200, obj);
+  return  httpResponse(200, obj);
   } catch (error) {
     obj = {
       message: "Inteaaaaaarnal Server Error",
     };
-    httpResponse(500, obj);
+   return httpResponse(500, obj);
   }
 };

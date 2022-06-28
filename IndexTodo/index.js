@@ -5,11 +5,11 @@ module.exports.handler = async (req, res) => {
     var obj = {
       message: "List Of todo",
     };
-    httpResponse(200, obj);
+   return httpResponse(200, obj);
   } catch (error) {
     obj = {
       message: "Inteaaaaanal Server Error",
     };
-    httpResponse(500, obj);
+   return httpResponse(500, obj);
   }
 };
