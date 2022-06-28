@@ -1,4 +1,4 @@
-exports.handler = async (req, res)=>{
+module.exports.handler = async function handler (req, res){
   try {
   return {
     statusCode : 200,
