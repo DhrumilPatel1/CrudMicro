@@ -7,7 +7,7 @@ phases:
   pre_build:
     on-failure: ABORT 
     commands:
-      - echo source version - $CODEBUILD_RESOLVED_SOURCE_VERSION
+      - echo ssource version - $CODEBUILD_RESOLVED_SOURCE_VERSION
       - echo Installing source NPM dependencies...
       - ls -la
       - npm install
