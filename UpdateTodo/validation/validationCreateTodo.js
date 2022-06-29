@@ -11,7 +11,7 @@ module.exports = function validateCreateTodo(data) {
     errors.email = `title is required`;
   }
   if (Validator.isEmpty(data.descriptions)) {
-    errors.phnumber = `descriptions is required`;
+    errors.descriptions = `descriptions is required`;
   }
 
   return {
