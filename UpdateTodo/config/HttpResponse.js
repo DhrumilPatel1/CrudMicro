@@ -1,11 +1,11 @@
-function HttpResponse(code, value) {
+function HttpResponse(code, value,response) {
   console.log("CALLED");
   return {
     statusCode: code,
     headers: {
       my_header: value,
     },
-    body: JSON.stringify({ A: "SUCCESSFULLY" }),
+    body: JSON.stringify(response),
     isBase64Encoded: false,
   };
 }
