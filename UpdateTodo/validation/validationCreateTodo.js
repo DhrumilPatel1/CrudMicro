@@ -8,7 +8,7 @@ module.exports = function validateCreateTodo(data) {
   data.descriptions = !isEmpty(data.descriptions) ? data.descriptions : "";
 
   if (Validator.isEmpty(data.title)) {
-    errors.email = `title is required`;
+    errors.title = `title is required`;
   }
   if (Validator.isEmpty(data.descriptions)) {
     errors.descriptions = `descriptions is required`;
