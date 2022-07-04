@@ -19,7 +19,7 @@ exports.handler = async (event, context) => {
         error: errors,
       });
     } else {
-      var create = await TodoModel.updateOne({ _id: body.id }, body);
+      var create = await TodoModel.updateOne({ id: body.id }, body);
       return httpResponse.HttpResponse(200, {
         message: "Todo Updated Successfully",
       });
