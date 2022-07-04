@@ -41,7 +41,7 @@ phases:
       - cd CreateTodo
       - unzip node_modules.zip
       - rm node_modules.zip
-      - zip -r9 UpdateTodo.zip .
+      - zip -r9 CreateTodo.zip .
       - mv CreateTodo.zip ../zip_code
       - cd ..
       - cd DeleteTodo
