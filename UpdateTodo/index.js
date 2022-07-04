@@ -29,7 +29,7 @@ exports.handler = async (event, context) => {
     }
   } catch (error) {
     return httpResponse.HttpResponse(500, {
-      message: "Intesrnal Server Error",
+      message: "Internal Server Error",
       error: error,
     });
   }
