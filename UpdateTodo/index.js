@@ -7,10 +7,11 @@ exports.handler = async (event, context) => {
   try {
     let body = JSON.parse(event.body);
     var { errors, isValid } = validateCreateTodo(body);
-    var findId = await TodoModel.findOne({id:body.id});
-    if (!findId) {
-      errors.id = "Id is invalid"
-    }
+    var findId = await TodoModel.findOne({_id:body.id});
+    
+    // if (!findId) {
+    //   errors.id = "Id is invalid"
+    // }
     if (!isEmpty(errors)) {
       return httpResponse.HttpResponse(422, {
         message: "missing somefield",
@@ -18,7 +19,7 @@ exports.handler = async (event, context) => {
       });
     } else {
       await mongoDBClientConnect();
-      var create = await TodoModel.updateOne({id:body.id},body);
+      var create = await TodoModel.updateOne({_id:body.id},body);
       return httpResponse.HttpResponse(200,  {
         message: "Todo Updated Successfully",
       });
