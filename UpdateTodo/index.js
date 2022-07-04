@@ -9,7 +9,9 @@ exports.handler = async (event, context) => {
     var { errors, isValid } = validateCreateTodo(body);
     await mongoDBClientConnect();
     var findId = await TodoModel.findOne({ id: body.id });
-
+return  httpResponse.HttpResponse(200, {
+  message: findId,
+});
     if (findId==null) {
       errors.id = "Id is invalid";
     }
