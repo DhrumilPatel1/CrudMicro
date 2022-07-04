@@ -8,7 +8,7 @@ exports.handler = async (event, context) => {
     let body = JSON.parse(event.body);
     var { errors, isValid } = validateCreateTodo(body);
     await mongoDBClientConnect();
-    var findId = await TodoModel.findOne({ id: body.id });
+    var findId = await TodoModel.findOne({ _id: body.id });
 return  httpResponse.HttpResponse(200, {
   message: findId,
 });
