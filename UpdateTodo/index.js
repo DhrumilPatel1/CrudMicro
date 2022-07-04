@@ -7,7 +7,7 @@ exports.handler = async (event, context) => {
   try {
     let body = JSON.parse(event.body);
     var { errors, isValid } = validateCreateTodo(body);
-    var findId = await TodoModel.findOne({_id:body.id});
+    // var findId = await TodoModel.findOne({_id:body.id});
     
     // if (!findId) {
     //   errors.id = "Id is invalid"
