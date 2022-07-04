@@ -6,7 +6,6 @@ const validateDeleteTodo = require("./validation/validationCreateTodo");
 exports.handler = async (event, context) => {
   try {
     let body = JSON.parse(event.body);
-
     var { errors, isValid } = validateDeleteTodo(body);
     if (!isEmpty(errors)) {
       return httpResponse.HttpResponse(422, {
@@ -15,7 +14,7 @@ exports.handler = async (event, context) => {
       });
     } else {
       await mongoDBClientConnect();
-      var deleteTodo = await TodoModel.delete({id:body.id});
+      var deleteTodo = await TodoModel.delete({_id:body.id});
       return httpResponse.HttpResponse(200,  {
         message: "Todo Deleted Successfully",
         deleteTodo:deleteTodo
