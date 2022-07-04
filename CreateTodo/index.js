@@ -15,9 +15,10 @@ exports.handler = async (event, context) => {
       });
     } else {
       await mongoDBClientConnect();
-      var create = await TodoModel.create(body);
+      var createTodo = await TodoModel.create(body);
       return httpResponse.HttpResponse(200,  {
         message: "Todo Created Successfully",
+        createTodo:createTodo
       });
     }
   } catch (error) {

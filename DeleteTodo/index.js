@@ -15,9 +15,10 @@ exports.handler = async (event, context) => {
       });
     } else {
       await mongoDBClientConnect();
-      var create = await TodoModel.delete({id:body.id});
+      var deleteTodo = await TodoModel.delete({id:body.id});
       return httpResponse.HttpResponse(200,  {
         message: "Todo Deleted Successfully",
+        deleteTodo:deleteTodo
       });
     }
   } catch (error) {

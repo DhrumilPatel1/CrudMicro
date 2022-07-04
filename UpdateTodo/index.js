@@ -22,9 +22,10 @@ exports.handler = async (event, context) => {
         error: errors,
       });
     } else {
-      var create = await TodoModel.updateOne({ id: body.id }, body);
+      var UpdateTodo = await TodoModel.updateOne({ id: body.id }, body);
       return httpResponse.HttpResponse(200, {
         message: "Todos UpdaTed Successfully",
+        UpdateTodo:UpdateTodo
       });
     }
   } catch (error) {
