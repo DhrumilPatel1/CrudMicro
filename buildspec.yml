@@ -32,17 +32,17 @@ phases:
       - echo Compiling the Node.js code
       # need to zip the code
       - echo zipping the code
-      - cd UpdateTodo
-      - unzip node_modules.zip
-      - rm node_modules.zip
-      - zip -r9 UpdateTodo.zip .
-      - mv UpdateTodo.zip ../zip_code
-      - cd ..
       - cd CreateTodo
       - unzip node_modules.zip
       - rm node_modules.zip
       - zip -r9 CreateTodo.zip .
       - mv CreateTodo.zip ../zip_code
+      - cd ..
+      - cd UpdateTodo
+      - unzip node_modules.zip
+      - rm node_modules.zip
+      - zip -r9 UpdateTodo.zip .
+      - mv UpdateTodo.zip ../zip_code
       - cd ..
       - cd DeleteTodo
       - unzip node_modules.zip
