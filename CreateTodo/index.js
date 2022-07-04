@@ -15,7 +15,7 @@ exports.handler = async (event, context) => {
       });
     } else {
       await mongoDBClientConnect();
-      var create = await TodoModel.updateOne({id:body.id},body);
+      var create = await TodoModel.create(body);
       return httpResponse.HttpResponse(200,  {
         message: "Todo Created Successfully",
       });
