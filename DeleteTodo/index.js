@@ -2,7 +2,7 @@ const { mongoDBClientConnect } = require("./config/db");
 const httpResponse = require("./config/HttpResponse");
 const TodoModel = require("./Model/Todo");
 const isEmpty = require("./validation/is-empty");
-const validateDeleteTodo = require("./validation/validationCreateTodo");
+const validateDeleteTodo = require("./validation/validationDeleteTodo");
 exports.handler = async (event, context) => {
   try {
     let body = JSON.parse(event.body);
@@ -14,7 +14,7 @@ exports.handler = async (event, context) => {
       });
     } else {
       await mongoDBClientConnect();
-      var deleteTodo = await TodoModel.delete({_id:body.id});
+      var deleteTodo = await TodoModel.deleteOne({_id:body.id});
       return httpResponse.HttpResponse(200,  {
         message: "Todo Deleted Successfully",
         deleteTodo:deleteTodo
