@@ -5,7 +5,7 @@ const isEmpty = require("./validation/is-empty");
 const validateCreateUser = require("./validation/validationCreateUser");
 exports.handlerRegister = async (event, context) => {
   try {
-    let body = JSON.parse(event.body);
+    var body = JSON.parse(event.body);
     await mongoDBClientConnect();
     if(!isEmpty(body.email)){
 
