@@ -9,7 +9,7 @@ exports.handlerRegister = async (event, context) => {
     var { errors, isValid } = validateCreateUser(body);
     if (!isEmpty(errors)) {
       return httpResponse.HttpResponse(422, {
-        message: "missing somefield",
+        message: "missing  somefield",
         error: errors,
       });
     } else {
