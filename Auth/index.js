@@ -50,11 +50,10 @@ exports.handlerLogin = async (event, context) => {
       });
     } else {
       var findUser = await UserModel.findOne({ email: body.email });
-      if (findUser.password != body.password) {
-        errors.password = "Your credential Invalid";
+
+      if (findUser == null || findUser.password != body.password) {
         return httpResponse.HttpResponse(422, {
           message: "Check You credential",
-          error: errors,
         });
       }
 
