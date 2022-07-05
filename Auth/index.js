@@ -6,6 +6,14 @@ const validateCreateUser = require("./validation/validationCreateUser");
 exports.handlerRegister = async (event, context) => {
   try {
     let body = JSON.parse(event.body);
+    await mongoDBClientConnect();
+    if(!isEmpty(body.email)){
+
+      var findUser = await UserModel.findOne({email:body.email})
+      if (findUser) {
+        errors.email="Your Email is already exist"
+      }
+    }
     var { errors, isValid } = validateCreateUser(body);
     if (!isEmpty(errors)) {
       return httpResponse.HttpResponse(422, {
@@ -13,7 +21,6 @@ exports.handlerRegister = async (event, context) => {
         error: errors,
       });
     } else {
-      await mongoDBClientConnect();
       var createUser = await UserModel.create(body);
       return httpResponse.HttpResponse(200, {
         message: "User Registered",
