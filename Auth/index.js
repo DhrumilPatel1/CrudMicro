@@ -7,6 +7,8 @@ exports.handlerRegister = async (event, context) => {
   try {
     var body = JSON.parse(event.body);
     await mongoDBClientConnect();
+    
+    var { errors, isValid } = validateCreateUser(body);
     if(!isEmpty(body.email)){
 
       var findUser = await UserModel.findOne({email:body.email})
@@ -14,7 +16,6 @@ exports.handlerRegister = async (event, context) => {
         errors.email="Your Email is already exist"
       }
     }
-    var { errors, isValid } = validateCreateUser(body);
     if (!isEmpty(errors)) {
       return httpResponse.HttpResponse(422, {
         message: "missing  somefield",
