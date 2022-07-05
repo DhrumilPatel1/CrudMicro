@@ -71,6 +71,7 @@ phases:
     commands:
       - echo post build started
       - echo updating lambda function
+      - aws lambda update-function-code --function-name auth_login --zip-file fileb://Auth.zip
       - aws lambda update-function-code --function-name auth --zip-file fileb://Auth.zip
       - aws lambda update-function-code --function-name update_todo --zip-file fileb://UpdateTodo.zip
       - aws lambda update-function-code --function-name create_todo --zip-file fileb://CreateTodo.zip
