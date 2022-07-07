@@ -1,6 +1,6 @@
 const { mongoDBClientConnect } = require("./config/db");
 const httpResponse = require("./config/HttpResponse");
-const Customer = require("./Model/Customer");
+const CustomerModel = require("./Model/Customer");
 const isEmpty = require("./validation/is-empty");
 const validateCreateCustomer = require("./validation/validationCreateCustomer");
 const validateLogin = require("./validation/validationLogin");
@@ -11,7 +11,7 @@ exports.handlerRegister = async (event, context) => {
 
     var { errors, isValid } = validateCreateCustomer(body);
     if (!isEmpty(body.email)) {
-      var findCustomer = await Customer.findOne({ email: body.email });
+      var findCustomer = await CustomerModel.findOne({ email: body.email });
       if (findCustomer) {
         errors.email = "Your Email is already exist";
       }
@@ -22,7 +22,7 @@ exports.handlerRegister = async (event, context) => {
         error: errors,
       });
     } else {
-      var Customer = await Customer.create(body);
+      var Customer = await CustomerModel.create(body);
       return httpResponse.HttpResponse(200, {
         message: "User Registered",
         Customer: Customer,
@@ -49,7 +49,7 @@ exports.handlerLogin = async (event, context) => {
         error: errors,
       });
     } else {
-      var findCustomer = await Customer.findOne({ email: body.email });
+      var findCustomer = await CustomerModel.findOne({ email: body.email });
 
       if (findCustomer == null || findCustomer.password != body.password) {
         return httpResponse.HttpResponse(422, {
