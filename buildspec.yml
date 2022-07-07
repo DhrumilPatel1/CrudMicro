@@ -14,7 +14,7 @@ phases:
       - npm fund
       # copying node_modules to all function's code
       - zip -r node_modules.zip node_modules
-      - cp node_modules.zip Auth
+      - cp node_modules.zip AuthCustomer
       - cp node_modules.zip CreateTodo
       - cp node_modules.zip UpdateTodo
       - cp node_modules.zip DeleteTodo
@@ -33,11 +33,11 @@ phases:
       - echo Compiling the Node.js code
       # need to zip the code
       - echo zipping the code
-      - cd Auth
+      - cd AuthCustomer
       - unzip node_modules.zip
       - rm node_modules.zip
-      - zip -r9 Auth.zip .
-      - mv Auth.zip ../zip_code
+      - zip -r9 AuthCustomer.zip .
+      - mv AuthCustomer.zip ../zip_code
       - cd ..
       - cd CreateTodo
       - unzip node_modules.zip
@@ -71,8 +71,8 @@ phases:
     commands:
       - echo post build started
       - echo updating lambda function
-      - aws lambda update-function-code --function-name auth_login --zip-file fileb://Auth.zip
-      - aws lambda update-function-code --function-name auth --zip-file fileb://Auth.zip
+      - aws lambda update-function-code --function-name auth_customer_login --zip-file fileb://AuthCustomer.zip
+      - aws lambda update-function-code --function-name auth_customer_register --zip-file fileb://AuthCustomer.zip
       - aws lambda update-function-code --function-name update_todo --zip-file fileb://UpdateTodo.zip
       - aws lambda update-function-code --function-name create_todo --zip-file fileb://CreateTodo.zip
       - aws lambda update-function-code --function-name delete_todo --zip-file fileb://DeleteTodo.zip
