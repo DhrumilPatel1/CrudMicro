@@ -2,14 +2,14 @@ const { mongoDBClientConnect } = require("./config/db");
 const httpResponse = require("./config/HttpResponse");
 const Customer = require("./Model/Customer");
 const isEmpty = require("./validation/is-empty");
-const validateCreateUser = require("./validation/validationCreateUser");
+const validateCreateCustomer = require("./validation/validationCreateCustomer");
 const validateLogin = require("./validation/validationLogin");
 exports.handlerRegister = async (event, context) => {
   try {
     var body = JSON.parse(event.body);
     await mongoDBClientConnect();
 
-    var { errors, isValid } = validateCreateUser(body);
+    var { errors, isValid } = validateCreateCustomer(body);
     if (!isEmpty(body.email)) {
       var findCustomer = await Customer.findOne({ email: body.email });
       if (findCustomer) {
