@@ -45,7 +45,7 @@ exports.handlerLogin = async (event, context) => {
 
     if (!isEmpty(errors)) {
       return httpResponse.HttpResponse(422, {
-        message: "missing  somefield",
+        message: "missing  Somefield",
         error: errors,
       });
     } else {
