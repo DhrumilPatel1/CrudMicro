@@ -9,7 +9,7 @@ exports.handler = async (event, context) => {
       await mongoDBClientConnect();
       var TodoList = await TodoModel.find();
       return httpResponse.HttpResponse(200,  {
-        message: "Todo Created Successfully",
+        message: "Todo Createdaaaaa Successfully",
         TodoList:TodoList
       });
     
