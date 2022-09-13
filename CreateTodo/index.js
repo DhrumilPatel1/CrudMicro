@@ -17,7 +17,7 @@ exports.handler = async (event, context) => {
       await mongoDBClientConnect();
       var createTodo = await TodoModel.create(body);
       return httpResponse.HttpResponse(200,  {
-        message: "Todo Created Successfully",
+        message: "Todo CreatedAAAAAAAASSS Successfully",
         createTodo:createTodo
       });
     }
